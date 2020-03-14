@@ -19,12 +19,56 @@ formatter.step({
   "name": "User is on home page",
   "keyword": "Given "
 });
+formatter.step({
+  "line": 5,
+  "name": "User clicks on checkout",
+  "keyword": "When "
+});
+formatter.step({
+  "line": 6,
+  "name": "Selects payment option as Credit Card",
+  "keyword": "When "
+});
+formatter.step({
+  "line": 7,
+  "name": "Enters the credit card details and bank\u0027s OTP",
+  "keyword": "Then "
+});
+formatter.step({
+  "line": 8,
+  "name": "Confirms the transaction status",
+  "keyword": "Then "
+});
 formatter.match({
   "location": "PurchaseScriptDefinition.user_is_on_home_page()"
 });
 formatter.result({
-  "duration": 5818594700,
-  "error_message": "org.junit.ComparisonFailure: expected:\u003cSample Store[1]\u003e but was:\u003cSample Store[]\u003e\r\n\tat org.junit.Assert.assertEquals(Assert.java:117)\r\n\tat org.junit.Assert.assertEquals(Assert.java:146)\r\n\tat StepDefinition.PurchaseScriptDefinition.user_is_on_home_page(PurchaseScriptDefinition.java:20)\r\n\tat ✽.Given User is on home page(C:/Users/VJ/Mar14/Pillow_Purchase/src/main/java/Features/Purchase.feature:4)\r\n",
-  "status": "failed"
+  "duration": 5610515900,
+  "status": "passed"
+});
+formatter.match({
+  "location": "PurchaseScriptDefinition.user_clicks_on_checkout()"
+});
+formatter.result({
+  "duration": 23100,
+  "status": "passed"
+});
+formatter.match({
+  "location": "PurchaseScriptDefinition.selects_payment_option_as_credit_card()"
+});
+formatter.result({
+  "duration": 18800,
+  "status": "passed"
+});
+formatter.match({
+  "location": "PurchaseScriptDefinition.enters_the_credit_card_details_and_bank_s_OTP()"
+});
+formatter.result({
+  "duration": 27500,
+  "status": "passed"
+});
+formatter.match({});
+formatter.result({
+  "status": "undefined"
 });
 });
