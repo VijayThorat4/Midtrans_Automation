@@ -38,9 +38,6 @@ public class PurchaseScriptDefinition {
 		wait.until(ExpectedConditions.visibilityOf(checkout_option));
 		checkout_option.click();
 		
-//		WebElement Summery_Text = driver.findElement(By.xpath("//p[text()=\"Order Summary\"]"));
-//		wait.until(ExpectedConditions.visibilityOf(Summery_Text));
-		
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		WebElement frame = driver.findElement(By.xpath("//iframe[@id=\"snap-midtrans\"]"));
 		driver.switchTo().frame(frame);
@@ -57,18 +54,17 @@ public class PurchaseScriptDefinition {
 	}
 	
 	
-	@Then("^Enters the credit card details and bank's OTP$")
-	public void enters_the_credit_card_details_and_bank_s_OTP() throws InterruptedException {
-		driver.findElement(By.name("cardnumber")).sendKeys("4811 1111 1111 1114");
-		driver.findElement(By.xpath("//input[@placeholder=\"MM / YY\"]")).sendKeys("03/20");
-		driver.findElement(By.xpath("//input[@placeholder=\"123\"]")).sendKeys("123");
+	@Then("^Enters the credit card details \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\" and bank's OTP \"([^\"]*)\"$")
+	public void enters_the_credit_card_details_and_bank_s_OTP(String card_number, String expiry, String CVV, String OTP) throws InterruptedException {
+		driver.findElement(By.name("cardnumber")).sendKeys(card_number);
+		driver.findElement(By.xpath("//input[@placeholder=\"MM / YY\"]")).sendKeys(expiry);
+		driver.findElement(By.xpath("//input[@placeholder=\"123\"]")).sendKeys(CVV);
 		driver.findElement(By.xpath("//a[@class=\"button-main-content\"]")).click();
-//		driver.manage().timeouts().implicitlyWait(3000, TimeUnit.SECONDS);
-		Thread.sleep(3000);
-//		WebElement frame1 = driver.findElement(By.xpath("//iframe[@src=\"https://api.sandbox.veritrans.co.id/v2/token/rba/redirect/481111-1114-923caa8a-c36d-40d9-af64-b7d2675cdfe7\"]"));
+		WebDriverWait wait = new WebDriverWait(driver, 5);      // use of Explicit wait
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//span[@class=\"label label-default\"]")));
+		
 		driver.switchTo().frame(0);
-//		driver.findElement(By.xpath("//input[@id=\"PaRes\"]")).sendKeys("112233");
-		driver.findElement(By.id("PaRes")).sendKeys("112233");
+		driver.findElement(By.id("PaRes")).sendKeys(OTP);
 		driver.findElement(By.xpath("//button[@name=\"ok\"]")).click();
 		Thread.sleep(2000);
 	}
@@ -77,9 +73,9 @@ public class PurchaseScriptDefinition {
 	@Then("^Confirms the transaction status$")
 	public void confirms_the_transaction_status() {
 		WebElement frame = driver.findElement(By.xpath("//iframe[@id=\"snap-midtrans\"]"));
-		driver.switchTo().frame(frame);
-//		Assert.assertEquals("Your card got declined by the bank", driver.findElement(By.xpath("//span[text()=\"Your card got declined by the bank\"]")).getText());
+		driver.switchTo().frame(frame);		
 		Assert.assertEquals("Transaction successful", driver.findElement(By.xpath("//div[@class=\"text-success text-bold\"]")).getText());
+		driver.quit();
 	}
 
 }
