@@ -43,32 +43,35 @@ formatter.match({
   "location": "PurchaseScriptDefinition.user_is_on_home_page()"
 });
 formatter.result({
-  "duration": 5610515900,
+  "duration": 6392442500,
   "status": "passed"
 });
 formatter.match({
   "location": "PurchaseScriptDefinition.user_clicks_on_checkout()"
 });
 formatter.result({
-  "duration": 23100,
+  "duration": 1780435500,
   "status": "passed"
 });
 formatter.match({
   "location": "PurchaseScriptDefinition.selects_payment_option_as_credit_card()"
 });
 formatter.result({
-  "duration": 18800,
+  "duration": 261317700,
   "status": "passed"
 });
 formatter.match({
   "location": "PurchaseScriptDefinition.enters_the_credit_card_details_and_bank_s_OTP()"
 });
 formatter.result({
-  "duration": 27500,
+  "duration": 6371499700,
   "status": "passed"
 });
-formatter.match({});
+formatter.match({
+  "location": "PurchaseScriptDefinition.confirms_the_transaction_status()"
+});
 formatter.result({
-  "status": "undefined"
+  "duration": 82853000,
+  "status": "passed"
 });
 });
