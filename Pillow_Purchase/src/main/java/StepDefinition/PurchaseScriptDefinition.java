@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -22,7 +23,9 @@ public class PurchaseScriptDefinition {
 	@Given("^User is on home page$")
 	public void user_is_on_home_page() {
 		System.setProperty("webdriver.chrome.driver", "E:/chromedriver.exe");
+//		System.setProperty("webdriver.gecko.driver", "E:/geckodriver.exe");
         driver = new ChromeDriver();
+//		driver = new FirefoxDriver();
         driver.get("https://demo.midtrans.com/");
         driver.manage().window().maximize();
 		String title = driver.getTitle();
