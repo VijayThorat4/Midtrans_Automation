@@ -1,13 +1,18 @@
 package StepDefinition;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.io.FileHandler;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -36,7 +41,6 @@ public class PurchaseScriptDefinition {
 	public void user_clicks_on_checkout() {
 		driver.findElement(By.xpath("//a[@class=\"btn buy\"]")).click();     // clicking on Buy Now
 		WebElement checkout_option = driver.findElement(By.xpath("//div[@class=\"cart-checkout\"]"));
-		
 		WebDriverWait wait = new WebDriverWait(driver, 5);      // use of Explicit wait
 		wait.until(ExpectedConditions.visibilityOf(checkout_option));
 		checkout_option.click();
@@ -45,7 +49,6 @@ public class PurchaseScriptDefinition {
 		WebElement frame = driver.findElement(By.xpath("//iframe[@id=\"snap-midtrans\"]"));
 		driver.switchTo().frame(frame);
 		driver.findElement(By.className("button-main-content")).click();
-		
 		Assert.assertEquals("Select Payment", driver.findElement(By.xpath("//p[@class=\"text-page-title-content\"]")).getText());
 	}
 	
@@ -74,11 +77,21 @@ public class PurchaseScriptDefinition {
 	
 	
 	@Then("^Confirms the transaction status$")
-	public void confirms_the_transaction_status() {
+	public void confirms_the_transaction_status() throws IOException {
+		try {
 		WebElement frame = driver.findElement(By.xpath("//iframe[@id=\"snap-midtrans\"]"));
 		driver.switchTo().frame(frame);		
 		Assert.assertEquals("Transaction successful", driver.findElement(By.xpath("//div[@class=\"text-success text-bold\"]")).getText());
-		driver.quit();
+		System.out.println("Transaction Completed Successfully");
+		}
+		catch(Exception e) {
+			System.out.println(e.getMessage());
+			System.out.println("Transaction Declined");
+			TakesScreenshot ts=(TakesScreenshot)driver;
+			File source = ts.getScreenshotAs(OutputType.FILE);
+			FileHandler.copy(source, new File("test-output\\Transaction_Failed.jpg"));
+		}
+		driver.quit();	
 	}
 
 }

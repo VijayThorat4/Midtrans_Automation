@@ -8,7 +8,7 @@ import cucumber.api.CucumberOptions;
 @CucumberOptions(
               features = "C:\\Users\\VJ\\Mar14\\Pillow_Purchase\\src\\main\\java\\Features\\Purchase.feature",
               glue= {"StepDefinition"},
-              format= {"pretty", "html:test-output"}
+              format= {"pretty", "html:test-output", "junit:test-output/result.xml"}
               )
 
 

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testsuite failures="0" name="cucumber.runtime.formatter.JUnitFormatter" skipped="0" tests="2" time="41.248601">
+<testcase classname="Midtrans Website Automation Testing" name="Pillow Purchase Using Credit Card" time="18.439287">
+<system-out><![CDATA[Given User is on home page..................................................passed
+When User clicks on checkout................................................passed
+When Selects payment option as Credit Card..................................passed
+Then Enters the credit card details "4811 1111 1111 1114", "03/20", "123" and bank's OTP "112233".passed
+Then Confirms the transaction status........................................passed
+]]></system-out>
+</testcase>
+<testcase classname="Midtrans Website Automation Testing" name="Pillow Purchase Using Credit Card 2" time="22.809314">
+<system-out><![CDATA[Given User is on home page..................................................passed
+When User clicks on checkout................................................passed
+When Selects payment option as Credit Card..................................passed
+Then Enters the credit card details "4911 1111 1111 1113", "03/20", "123" and bank's OTP "112233".passed
+Then Confirms the transaction status........................................passed
+]]></system-out>
+</testcase>
+</testsuite>
